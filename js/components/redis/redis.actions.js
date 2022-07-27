@@ -1,3 +1,4 @@
+const DEFAULT_TTL = 365 * 24 * 60 * 60;
 m.redis.acts({
     async get_key(_$, args) {
         let record = await m.airtable.act.get_by_value({
@@ -6,7 +7,7 @@ m.redis.acts({
             // For this column, each value under the "key" column is a key.
             value: args.key 
         });
-        return record.fields['value'];
+        return record ? record.fields['value'] : null;
     },
     async set_key(_$, args) {
         let value = await _$.act.get_key(args);
@@ -17,18 +18,22 @@ m.redis.acts({
                 // For this column, each value under the "key" column is a key.
                 value: args.key,
                 fields: {
-                    "value": args.value
+                    "value": args.value,
+                    "TTL": args.ttl || DEFAULT_TTL
                 }
             });
         }
         else {
-            await _$.act.create_key(args)
+            return await _$.act.create_key(args)
         }
     },
 
     priv: {
         async create_key(_$, args) {
-            // TODO
+            return await m.airtable.act.create({
+                column_name: "key",
+                fields: { "value": args.value, "key": args.key, "TTL": args.ttl || DEFAULT_TTL }
+            });
         }
     }
 });

@@ -67,7 +67,29 @@ m.airtable.act({
             let record = await _$.act.get_by_value(args);
             _$.act.base_table({ base_id: args.base_id, table: args.table }).update([
                 { "id": record.id, "fields": args.fields }
-            ]);
+            ], function(err, records) {
+                if (err) { return reject(err) }
+                resolve(records);
+            });
+        });
+    },
+
+    /* Expects
+    {
+        base_id: "app1234567890",
+        table: "table name",
+        column_name: "Name",
+        fields: { "Last Name": "Montgomery" },
+        params: { },
+    } */
+    create(_$, args) {
+        return new Promise(async (resolve, reject) => {
+            _$.act.base_table({ base_id: args.base_id, table: args.table }).create([
+                { "fields": args.fields }
+            ], function(err, records) {
+                if (err) return reject(err);
+                resolve(records);
+            });
         });
     },
 
