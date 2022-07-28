@@ -11,7 +11,7 @@ m.redis.acts({
     },
 
     async get_hash_key(_$, args) {
-        const data = await get_key(args);
+        const data = await _$.act.get_key(args);
         return JSON.parse(data);
     },
 
