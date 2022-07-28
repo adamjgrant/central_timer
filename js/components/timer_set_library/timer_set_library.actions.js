@@ -1,4 +1,4 @@
-const REDIS_NAMESPACE = "central_timer_";
+const REDIS_NAMESPACE = "central_timer-";
 
 m.timer_set_library.data = [];
 m.timer_set_library.acts({
