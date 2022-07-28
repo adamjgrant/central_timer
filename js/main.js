@@ -12,6 +12,7 @@ components.forEach(component => {
 
     ["actions", "events", "routes"].forEach(mozart_type => {
         let script_tag = document.createElement("script");
+        script_tag.type = "module";
         script_tag.src=`js/components/${component}/${component}.${mozart_type}.js`;
         script_tag_holder.appendChild(script_tag);
 

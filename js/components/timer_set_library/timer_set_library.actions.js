@@ -12,5 +12,10 @@ m.timer_set_library.acts({
 
   get_timer_set_by_name(_$, args) {
     return m.timer_set_library.data.find(timer_set => timer_set.name.toLowerCase() === args.name.toLowerCase())
+  },
+
+  render_timer_sets(_$, args) {
+    const markup = m.timer_set_library.data.map(timer_set => m.timer.act.get_markup({ timer_set })).join("\n");
+    document.body.innerHTML = markup;
   }
 });

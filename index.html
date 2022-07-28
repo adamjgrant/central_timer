@@ -24,8 +24,9 @@
     <script>
         // Use this area for high-level configuration;
         const components = [
-			"timer_set_library",
-			"redis",
+            "timer_set_library",
+            "timer",
+            "redis",
             "airtable"
         ];
         // Don't put value in directly. These should come from somewhere
@@ -41,7 +42,7 @@
     <script src="js/vendor/airtable.js"></script>
     <script src="js/vendor/mozart.js"></script>
     <script id="main_script" src="js/main.js"></script>
-
+    <script type="module" src="js/time.js"></script>
     <script src="js/vendor/viewport-fix.js"></script>
     <script>new VVP()</script>
     <link rel="stylesheet" href="css/icofont.min.css">
