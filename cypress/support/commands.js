@@ -11,10 +11,13 @@
 //
 Cypress.Commands.add('auth', () => {
     const airtable_api_key = Cypress.env('airtable_api_key');
-    cy.session(airtable_api_key, () => {
-        console.log(airtable_api_key);
-        localStorage.setItem("airtable_api_key", airtable_api_key);
-    })
+    console.log("called")
+    // cy.session(airtable_api_key, () => {
+        cy.window().then(win => {
+            console.log("marco");
+            win.localStorage.setItem("airtable_api_key", airtable_api_key);
+        })
+    // })
 });
 
 // -- This is a parent command --
