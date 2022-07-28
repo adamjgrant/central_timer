@@ -1,6 +1,11 @@
+install:
+	npm install
+
 build:
-	open http://localhost:3001
 	python3 -m http.server 3001
+
+test:
+	npx cypress open
 
 new_component:
 	./new_component.sh
