@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Every 5 Minutes",
+    "timers": [
+      {
+        "name": "5 Minutes",
+        "duration_in_seconds": 300
+      }
+    ],
+    "properties": {
+      "repeat_x_times": 100
+    }
+  }
+]
