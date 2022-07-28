@@ -9,6 +9,12 @@ m.redis.acts({
         });
         return record ? record.fields['value'] : null;
     },
+
+    async get_hash_key(_$, args) {
+        const data = await get_key(args);
+        return JSON.parse(data);
+    },
+
     async set_key(_$, args) {
         let value = await _$.act.get_key(args);
         if (value) {
