@@ -8,5 +8,9 @@ m.timer_set_library.acts({
     });
     m.timer_set_library.data = timer_sets;
     return timer_sets;
+  },
+
+  get_timer_set_by_name(_$, args) {
+    return m.timer_set_library.data.find(timer_set => timer_set.name.toLowerCase() === args.name.toLowerCase())
   }
 });
